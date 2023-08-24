@@ -2,7 +2,6 @@
 #define ELEMENT_H
 
 typedef struct Element {
-    char *item;
     float number;
     struct Element *nextElement;
 } Element;

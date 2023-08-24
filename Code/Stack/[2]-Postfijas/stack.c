@@ -17,7 +17,7 @@ int push(Stack *stack, Element element) {
         return 0;
     }
 
-    newElement -> item = element.item;
+    newElement -> number = element.number;
     newElement -> nextElement = stack->front;
 
     newElement -> number = element.number;
@@ -42,4 +42,8 @@ Element* pop(Stack *stack) {
 
 int size(Stack *stack) {
     return stack->size;
+}
+
+int isEmpty(Stack *stack) {
+    return stack -> size == 0;
 }

@@ -12,5 +12,6 @@ int createStack(Stack *stack);
 int push(Stack *stack, Element element);
 Element* pop(Stack *stack);
 int size(Stack *stack);
+int isEmpty(Stack *stack);
 
 #endif
