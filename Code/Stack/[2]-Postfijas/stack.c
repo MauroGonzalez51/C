@@ -18,11 +18,10 @@ int push(Stack *stack, Element element) {
     }
 
     newElement -> item = element.item;
-    newElement -> number = element.number;
     newElement -> nextElement = stack->front;
 
-    stack->front = newElement;
-    stack->size++;
+    stack -> front = newElement;
+    stack -> size++;
 
     return 1;
 }
@@ -33,8 +32,8 @@ Element* pop(Stack *stack) {
     }
 
     Element *poppedElement = stack->front;
-    stack->front = poppedElement->nextElement;
-    stack->size--;
+    stack -> front = poppedElement->nextElement;
+    stack -> size--;
 
     return poppedElement;
 }

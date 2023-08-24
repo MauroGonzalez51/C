@@ -2,8 +2,7 @@
 #define ELEMENT_H
 
 typedef struct Element {
-    char item;
-    int number;
+    char *item;
     struct Element *nextElement;
 } Element;
 
