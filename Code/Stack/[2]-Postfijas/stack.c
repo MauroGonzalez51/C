@@ -20,6 +20,8 @@ int push(Stack *stack, Element element) {
     newElement -> item = element.item;
     newElement -> nextElement = stack->front;
 
+    newElement -> number = element.number;
+
     stack -> front = newElement;
     stack -> size++;
 

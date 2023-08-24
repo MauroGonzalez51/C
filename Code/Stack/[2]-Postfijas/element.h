@@ -3,6 +3,7 @@
 
 typedef struct Element {
     char *item;
+    float number;
     struct Element *nextElement;
 } Element;
 
