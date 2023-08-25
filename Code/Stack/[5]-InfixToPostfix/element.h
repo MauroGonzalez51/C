@@ -2,7 +2,7 @@
 #define ELEMENT_H
 
 typedef struct Element {
-    char *item;
+    char item;
     struct Element *nextElement;
 } Element;
 
