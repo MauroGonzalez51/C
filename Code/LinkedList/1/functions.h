@@ -7,5 +7,6 @@
 char* copyString(const char input[]);
 char* takeInput(const char message[]);
 void log(const char message[]);
+void println(const int n);
 
 #endif

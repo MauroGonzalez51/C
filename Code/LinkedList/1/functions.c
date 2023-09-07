@@ -24,3 +24,11 @@ char* takeInput(const char message[]) {
 void log(const char message[]) {
     printf("\n[ INFO ] %s\n", message);
 }
+
+void println(const int n) {
+    printf("\n");
+    for (int i = 0; i < n; i++) {
+        printf("-");
+    }
+    printf("\n\n");
+}

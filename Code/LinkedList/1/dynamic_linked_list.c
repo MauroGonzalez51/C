@@ -32,3 +32,17 @@ int insertInList(DynamicLinkedList *list, StaticLinkedList *staticList) {
     list -> size++;
     return 1;
 }
+
+DynamicNode* getElementByIndex(DynamicLinkedList *list, int index) {
+    if (index < 0 || index >= list -> size) { return NULL; }
+
+    DynamicNode *current = list -> head;
+    int currentIndex = 0;
+
+    while (current != NULL && currentIndex != index) {
+        current = current -> nextElement;
+        currentIndex++;
+    }
+
+    return current;
+}
