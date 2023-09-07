@@ -16,37 +16,26 @@ int isListFull(StaticLinkedList *list) {
     return list -> currentSize == list -> maxSize;
 }
 
-int insertAtBeginning(StaticLinkedList *list, Node node) {
-    Node* newNode = (Node *) malloc (sizeof(Node));
+int insertAtEnd(StaticLinkedList *list, StaticNode node) {
+    StaticNode* newNode = (StaticNode *) malloc (sizeof(StaticNode));
 
-    if (!newNode) { return 0; }
+    if (!newNode) { 
+        printf("Error: Failed to allocate");
+        return 0; 
+    }
 
-    if (isListFull(list)) { return 0; }
-
-    // * HERE is where the values get assigned
-
-    newNode -> value = node.value;
-
-    // * ------------------------------------------------------|>
-
-    newNode -> nextElement = list -> head;
-    list -> head = newNode;
-    list -> currentSize++;
-
-    return 1;
-}
-
-int insertAtEnd(StaticLinkedList *list, Node node) {
-    Node* newNode = (Node *) malloc (sizeof(Node));
-
-    if (!newNode) { return 0; }
-
-    if (isListFull(list)) { return 0; }
+    if (isListFull(list)) { 
+        printf("La lista esta llena\n");
+        return 0; 
+    }
 
     // * HERE is where the values get assigned
 
-    newNode -> value = node.value;
-
+    newNode -> studentName = copyString(node.studentName);
+    newNode -> ID = copyString(node.ID);
+    newNode -> noIdentification = copyString(node.noIdentification);
+    newNode -> email = copyString(node.email);
+    
     // * ------------------------------------------------------|>
 
     newNode -> nextElement = NULL;
@@ -54,7 +43,7 @@ int insertAtEnd(StaticLinkedList *list, Node node) {
     if (list -> head == NULL) {
         list -> head = newNode;
     } else {
-        Node* current = list -> head;
+        StaticNode* current = list -> head;
         while (current -> nextElement != NULL) {
             current = current -> nextElement;
         }
