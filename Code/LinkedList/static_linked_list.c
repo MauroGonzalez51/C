@@ -28,12 +28,12 @@ int isListFull(StaticLinkedList *list) {
     return list -> currentSize == list -> maxSize;
 }
 
-void insertAtBeginning(StaticLinkedList *list, Node node) {
+int insertAtBeginning(StaticLinkedList *list, Node node) {
     Node* newNode = (Node *) malloc (sizeof(Node));
 
-    if (!newNode) { return; }
+    if (!newNode) { return 0; }
 
-    if (isListFull(list)) { return; }
+    if (isListFull(list)) { return 0; }
 
     // * HERE is where the values get assigned
 
@@ -44,14 +44,16 @@ void insertAtBeginning(StaticLinkedList *list, Node node) {
     newNode -> nextElement = list -> head;
     list -> head = newNode;
     list -> currentSize++;
+
+    return 1;
 }
 
-void insertAtEnd(StaticLinkedList *list, Node node) {
+int insertAtEnd(StaticLinkedList *list, Node node) {
     Node* newNode = (Node *) malloc (sizeof(Node));
 
-    if (!newNode) { return; }
+    if (!newNode) { return 0; }
 
-    if (isListFull(list)) { return; }
+    if (isListFull(list)) { return 0; }
 
     // * HERE is where the values get assigned
 
@@ -73,6 +75,8 @@ void insertAtEnd(StaticLinkedList *list, Node node) {
     }
 
     list -> currentSize++;
+
+    return 1;
 }
 
 int main(void) {
