@@ -25,7 +25,7 @@ int insertAtEnd(StaticLinkedList *list, StaticNode node) {
     }
 
     if (isListFull(list)) { 
-        printf("La lista esta llena\n");
+        log("La lista esta llena");
         return 0; 
     }
 

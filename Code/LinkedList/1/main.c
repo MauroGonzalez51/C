@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "static_linked_list.h"
+#include "dynamic_linked_list.h"
 #include "functions.h"
 
-void mainMenu() {
+#define MAX_STUDENTS_PER_COURSE 30
+
+void mainMenu(DynamicLinkedList *dynamicList) {
     int newCourse = 0;
 
     do {
-        StaticLinkedList *list = createStaticLinkedList(30);
+        StaticLinkedList *list = createStaticLinkedList(MAX_STUDENTS_PER_COURSE);
         printf("\n");
 
         list -> courseName = takeInput("Ingrese el nombre del curso: ");
@@ -36,14 +38,18 @@ void mainMenu() {
             scanf("%d", &newStudent);
         } while (newStudent);
 
+        (insertInList(dynamicList, list)) ?
+            log("Clase agregada correctamente") :
+            log("Error al momento de guardar la clase");
+
         printf("\nDesea ingresar otro curso? (1/0): ");
         scanf("%d", &newCourse);
     } while (newCourse);
 }
 
-
 int main(void) {
-    mainMenu();
+    DynamicLinkedList *dynamicList = createDynamicLinkedList();
+    mainMenu(dynamicList);
     return EXIT_SUCCESS;
 }
 
