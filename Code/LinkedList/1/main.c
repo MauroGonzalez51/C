@@ -5,58 +5,14 @@
 #include "dynamic_linked_list.h"
 #include "static_linked_list.h"
 #include "functions.h"
+#include "dashboard.h"
 
 #define MAX_STUDENTS_PER_COURSE 30
-
-// * ---------------------------------------------------------------------------------------------------------|>
-
-void showAllCourses(DynamicLinkedList *list) {
-    DynamicNode *dynamicNode = list->head;
-
-    int classCount = 0;
-
-    while (dynamicNode != NULL) {
-        classCount++;
-
-        println(40);
-
-        printf("[%d]\n\n", classCount);
-
-        printf("Nombre del curso: %s\n", dynamicNode -> list -> courseName);
-        printf("[ ID / Codigo ] del curso: %s\n", dynamicNode -> list -> ID);
-
-        dynamicNode = dynamicNode->nextElement;
-    }
-}
-
-// * ---------------------------------------------------------------------------------------------------------|>
-
-void modifyCourse(DynamicLinkedList *list) {
-    int indexToModify;
-
-    showAllCourses(list);
-
-    printf("\n\nInserte el [ INDEX ] de la clase a modificar: ");
-    scanf("%d", &indexToModify);
-
-    indexToModify--;
-
-    DynamicNode *course = getElementByIndex(list, indexToModify);
-
-    if (!course) {
-        log("Error: El elemento no existe"); return;
-    } else log("Elemento identificado correctamente");
-
-    course -> list -> courseName = takeInput("Nuevo nombre del curso: ");
-    course -> list -> ID = takeInput("Nuevo [ ID / CODIGO ] del curso: ");
-}
-
-// * ---------------------------------------------------------------------------------------------------------|>
 
 void handleCase(DynamicLinkedList *list, int input) {
     switch (input) {
         case 1: {
-            // * SHOW ALL THE CLASSES STORED
+            // * SHOW ALL THE COURSES STORED
             showAllCourses(list);
             break;
         }
