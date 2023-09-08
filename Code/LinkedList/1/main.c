@@ -6,8 +6,11 @@
 #include "static_linked_list.h"
 #include "functions.h"
 #include "dashboard.h"
+#include "selected_course.h"
 
 #define MAX_STUDENTS_PER_COURSE 30
+
+DynamicNode *SELECTED_COURSE = NULL;
 
 void handleCase(DynamicLinkedList *list, int input) {
     switch (input) {
@@ -18,8 +21,8 @@ void handleCase(DynamicLinkedList *list, int input) {
         }
 
         case 2: {
-            // * MODIFY THE COURSE [ CourseName, ID ]
-            modifyCourse(list);
+            // * SELECT A COURSE
+            selectCourse(list);
             break;
         }
 
@@ -34,9 +37,8 @@ void dashboard(DynamicLinkedList *dynamicList) {
     do {
         printf("\n");
         printf("1. Mostrar clases\n");
-        printf("2. Modificar clases\n");
-        printf("3. Modificar alumnos en una clase\n");
-        printf("4. Eliminar alumnos en una clase\n");
+        printf("2. Seleccionar una clase\n");
+        printf("3. Modificar una clase\n");
 
         printf("\nSeleccione un valor: ");
         scanf("%d", &input);

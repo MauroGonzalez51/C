@@ -19,22 +19,39 @@ void showAllCourses(DynamicLinkedList *list) {
     }
 }
 
-void modifyCourse(DynamicLinkedList *list) {
-    int indexToModify;
+void selectCourse(DynamicLinkedList *list) {
+    int selectedIndex;
 
     showAllCourses(list);
 
-    printf("\n\nInserte el [ INDEX ] de la clase a modificar: ");
-    scanf("%d", &indexToModify);
+    printf("\n\nInserte el [ INDEX ] de la clase a seleccionar: ");
+    scanf("%d", &selectedIndex);
 
-    indexToModify--;
+    selectedIndex--;
 
-    DynamicNode *course = getElementByIndex(list, indexToModify);
+    SELECTED_COURSE = getElementByIndex(list, selectedIndex);
 
-    if (!course) {
-        log("Error: El elemento no existe"); return;
-    } else log("Elemento identificado correctamente");
-
-    course -> list -> courseName = takeInput("Nuevo nombre del curso: ");
-    course -> list -> ID = takeInput("Nuevo [ ID / CODIGO ] del curso: ");
+    if (!SELECTED_COURSE) {
+        log("Error: El elemento no existe"); SELECTED_COURSE = NULL; return;
+    } else log("Elemento seleccionado correctamente");
 }
+
+// void modifyCourse(DynamicLinkedList *list) {
+//     int indexToModify;
+
+//     showAllCourses(list);
+
+//     printf("\n\nInserte el [ INDEX ] de la clase a modificar: ");
+//     scanf("%d", &indexToModify);
+
+//     indexToModify--;
+
+//     DynamicNode *course = getElementByIndex(list, indexToModify);
+
+//     if (!course) {
+//         log("Error: El elemento no existe"); return;
+//     } else log("Elemento identificado correctamente");
+
+//     course -> list -> courseName = takeInput("Nuevo nombre del curso: ");
+//     course -> list -> ID = takeInput("Nuevo [ ID / CODIGO ] del curso: ");
+// }

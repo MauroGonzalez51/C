@@ -7,8 +7,9 @@
 #include "dynamic_linked_list.h"
 #include "static_linked_list.h"
 #include "functions.h"
+#include "selected_course.h"
 
 void showAllCourses(DynamicLinkedList *list);
-void modifyCourse(DynamicLinkedList *list);
+void selectCourse(DynamicLinkedList *list);
 
 #endif
