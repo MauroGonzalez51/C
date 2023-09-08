@@ -1,5 +1,27 @@
 #include "dashboard.h"
 
+int selectedCourseExists() {
+    return SELECTED_COURSE ? 1 : 0;
+}
+
+int printSelectedCourse() {
+    if (!selectedCourseExists()) { return 0; }
+
+    printf("\nCurso seleccionado: [ Nombre del curso: %s | ID: %s ]\n", 
+        SELECTED_COURSE -> list -> courseName, 
+        SELECTED_COURSE -> list -> ID
+    );
+
+    return 1;
+}
+
+int confirmation(const char message[]) {
+    int flag;
+    printf("%s (1/0): ", message);
+    scanf("%d", &flag);
+    return flag;
+}
+
 void showAllCourses(DynamicLinkedList *list) {
     DynamicNode *dynamicNode = list->head;
 
@@ -36,22 +58,50 @@ void selectCourse(DynamicLinkedList *list) {
     } else log("Elemento seleccionado correctamente");
 }
 
-// void modifyCourse(DynamicLinkedList *list) {
-//     int indexToModify;
+void modifyCourse() {
+    if (!printSelectedCourse()) { log("Error: Seleccione un curso primero"); return; }
 
-//     showAllCourses(list);
+    SELECTED_COURSE -> list -> courseName = takeInput("Nuevo nombre del curso: ");
+    SELECTED_COURSE -> list -> ID = takeInput("Nuevo [ ID / CODIGO ] del curso: ");
+}
 
-//     printf("\n\nInserte el [ INDEX ] de la clase a modificar: ");
-//     scanf("%d", &indexToModify);
+void deleteCourse(DynamicLinkedList *list) {
+    if (!printSelectedCourse()) { log("Error: Seleccione un curso primero"); return; }
 
-//     indexToModify--;
+    if (!confirmation("Estas seguro que quieres eliminar el curso?")) { return; }
 
-//     DynamicNode *course = getElementByIndex(list, indexToModify);
+    if (list -> head == NULL) { return; }
 
-//     if (!course) {
-//         log("Error: El elemento no existe"); return;
-//     } else log("Elemento identificado correctamente");
+    // * Checking if head is the element to delete
 
-//     course -> list -> courseName = takeInput("Nuevo nombre del curso: ");
-//     course -> list -> ID = takeInput("Nuevo [ ID / CODIGO ] del curso: ");
-// }
+    if (
+        (strcmp(list -> head -> list -> courseName, SELECTED_COURSE -> list -> courseName) == 0) &&
+        (strcmp(list -> head -> list -> ID, SELECTED_COURSE -> list -> ID) == 0)
+    ) {
+        DynamicNode *temp = list -> head;
+        list -> head = list -> head -> nextElement;
+        free(temp);
+        list -> size--;
+        log("Curso eliminado correctamente");
+        return;
+    }
+
+    // * Rest of the list
+
+    DynamicNode *current = list -> head;
+    while (
+        (current -> nextElement != NULL) && 
+        (strcmp(current -> nextElement -> list -> courseName, SELECTED_COURSE -> list -> courseName) != 0) &&
+        (strcmp(current -> nextElement -> list -> ID, SELECTED_COURSE -> list -> ID) != 0)
+    ) {
+        current = current -> nextElement;
+    }
+
+    if (current -> nextElement == NULL) { return; }
+
+    DynamicNode *temp = current -> nextElement;
+    current -> nextElement = temp -> nextElement;
+    free(temp);
+    list -> size--;
+    log("Curso eliminado correctamente");
+}

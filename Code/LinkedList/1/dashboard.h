@@ -11,5 +11,9 @@
 
 void showAllCourses(DynamicLinkedList *list);
 void selectCourse(DynamicLinkedList *list);
+int selectedCourseExists();
+int printSelectedCourse();
+void modifyCourse();
+void deleteCourse(DynamicLinkedList *list);
 
 #endif
