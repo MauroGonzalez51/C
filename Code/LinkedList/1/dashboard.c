@@ -184,11 +184,69 @@ void deleteStudent() {
         current = current -> nextElement;
     }
 
-    if (current -> nextElement == NULL) { return; }
+    if (current -> nextElement == NULL) { 
+        log("Error: No se encontro el estudiante a eliminar");
+        return; 
+    }
 
     StaticNode *temp = current -> nextElement;
     current -> nextElement = temp -> nextElement;
     free(temp);
     SELECTED_COURSE -> list -> currentSize--;
     log("Estudiante eliminado correctamente");
+}
+
+void modifyStudent() {
+    if (!printSelectedCourse()) { log("Error: Seleccione un curso primero"); return; }
+
+    printf("\nDatos del estudiante a modificar\n\n");
+
+    char *studentName = takeInput("Ingrese el nombre del estudiante: ");
+    char *ID = takeInput("Ingrese el [ ID / CODIGO ]: ");
+    char *noIdentification = takeInput("Ingrese el numero de identificacion: ");
+
+    if (SELECTED_COURSE -> list -> head == NULL) { return; }
+
+    // * Checking if head is the element to modify
+
+    if (
+        (strcmp(SELECTED_COURSE -> list -> head -> studentName, studentName) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> ID, ID) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> noIdentification, noIdentification) == 0)
+    ) {
+        log("Estudiante seleccionado correctamente");
+
+        SELECTED_COURSE -> list -> head -> studentName = takeInput("Nuevo nombre del estudiante: ");
+        SELECTED_COURSE -> list -> head -> ID = takeInput("Nuevo [ ID / CODIGO ] del estudiante: ");
+        SELECTED_COURSE -> list -> head -> noIdentification = takeInput("Nuevo numero de identificacion: ");
+        SELECTED_COURSE -> list -> head -> email = takeInput("Nuevo correo electronico: ");
+        log("Datos modificados correctamente");
+        return;
+    }
+
+    // * Rest of the list
+
+    StaticNode *current = SELECTED_COURSE -> list -> head;
+    while (
+        (current -> nextElement != NULL) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> studentName, studentName) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> ID, ID) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> noIdentification, noIdentification) == 0)
+    ) {
+        current = current -> nextElement;
+    }
+
+    if (current -> nextElement == NULL) { 
+        log("Error: No se encontro el estudiante a modificar");
+        return; 
+    }
+
+    log("Estudiante seleccionado correctamente");
+
+    current -> studentName = takeInput("Nuevo nombre del estudiante: ");
+    current -> ID = takeInput("Nuevo [ ID / CODIGO ] del estudiante: ");
+    current -> noIdentification = takeInput("Nuevo numero de identificacion: ");
+    current -> email = takeInput("Nuevo correo electronico: ");
+
+    log("Datos modificados correctamente");
 }

@@ -53,6 +53,11 @@ void handleCase(DynamicLinkedList *list, int input) {
             break;
         }
 
+        case 8: {
+            modifyStudent();
+            break;
+        }
+
         default:
             exit(EXIT_FAILURE);
     }
@@ -80,6 +85,7 @@ void dashboard(DynamicLinkedList *dynamicList) {
         printf("5. Ver todos los estudiantes en la clase\n");
         printf("6. Agregar un estudiante\n");
         printf("7. Eliminar un estudiante\n");
+        printf("8. Modificar un estudiante\n");
 
         // * --------------------------------------------|>
         

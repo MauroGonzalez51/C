@@ -20,5 +20,6 @@ void showAllStudentsInSelectedCourse();
 void insertStudent(StaticLinkedList *list);
 
 void deleteStudent();
+void modifyStudent();
 
 #endif
