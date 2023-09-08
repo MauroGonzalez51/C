@@ -22,5 +22,6 @@ typedef struct StaticLinkedList {
 StaticLinkedList* createStaticLinkedList(int maxSize);
 int isListFull(StaticLinkedList *list);
 int insertAtEnd(StaticLinkedList *list, StaticNode node);
+int isEmpty(StaticLinkedList *list);
 
 #endif

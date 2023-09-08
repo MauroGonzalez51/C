@@ -22,6 +22,19 @@ int confirmation(const char message[]) {
     return flag;
 }
 
+void insertStudent(StaticLinkedList *list) {
+    StaticNode student;
+
+    student.studentName = takeInput("Nombre del estudiante: ");
+    student.ID = takeInput("Ingrese el codigo del estudiante: ");
+    student.noIdentification = takeInput("Ingrese el numero de identificacion del estudiante: ");
+    student.email = takeInput("Ingrese el correo electronico del estudiante: ");
+
+    (insertAtEnd(list, student)) ? 
+        log("Estudiante agregado correctamente") :
+        log("Error al momento de guardar los datos");
+}
+
 void showAllCourses(DynamicLinkedList *list) {
     DynamicNode *dynamicNode = list->head;
 
@@ -70,6 +83,11 @@ void deleteCourse(DynamicLinkedList *list) {
 
     if (!confirmation("Estas seguro que quieres eliminar el curso?")) { return; }
 
+    if (!isEmpty(SELECTED_COURSE -> list)) {
+        log("Error: La clase tiene estudiantes matriculados");
+        return;
+    }
+
     if (list -> head == NULL) { return; }
 
     // * Checking if head is the element to delete
@@ -106,7 +124,7 @@ void deleteCourse(DynamicLinkedList *list) {
     log("Curso eliminado correctamente");
 }
 
-void showAllStudents() {
+void showAllStudentsInSelectedCourse() {
     if (!printSelectedCourse()) { log("Error: Seleccione un curso primero"); return; }
 
     int studentCount = 0;
@@ -124,4 +142,53 @@ void showAllStudents() {
 
         current = current -> nextElement;
     }
+}
+
+void deleteStudent() {
+    if (!printSelectedCourse()) { log("Error: Seleccione un curso primero"); return; }
+
+    printf("\nDatos del estudiante a eliminar\n\n");
+
+    char *studentName = takeInput("Ingrese el nombre del estudiante: ");
+    char *ID = takeInput("Ingrese el [ ID / CODIGO ]: ");
+    char *noIdentification = takeInput("Ingrese el numero de identificacion: ");
+
+    if (!confirmation("Estas seguro?")) { return; }
+
+    if (SELECTED_COURSE -> list -> head == NULL) { return; }
+
+    // * Checking if head is the element to delete
+
+    if (
+        (strcmp(SELECTED_COURSE -> list -> head -> studentName, studentName) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> ID, ID) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> noIdentification, noIdentification) == 0)
+    ) {
+        StaticNode *temp = SELECTED_COURSE -> list -> head;
+        SELECTED_COURSE -> list -> head = SELECTED_COURSE -> list -> head -> nextElement;
+        free(temp);
+        SELECTED_COURSE -> list -> currentSize--;
+        log("Estudiante eliminado correctamente");
+        return;
+    }
+
+    // * Rest of the list
+
+    StaticNode *current = SELECTED_COURSE -> list -> head;
+    while (
+        (current -> nextElement != NULL) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> studentName, studentName) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> ID, ID) == 0) &&
+        (strcmp(SELECTED_COURSE -> list -> head -> noIdentification, noIdentification) == 0)
+    ) {
+        current = current -> nextElement;
+    }
+
+    if (current -> nextElement == NULL) { return; }
+
+    StaticNode *temp = current -> nextElement;
+    current -> nextElement = temp -> nextElement;
+    free(temp);
+    SELECTED_COURSE -> list -> currentSize--;
+    log("Estudiante eliminado correctamente");
 }

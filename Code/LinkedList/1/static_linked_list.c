@@ -16,6 +16,10 @@ int isListFull(StaticLinkedList *list) {
     return list -> currentSize == list -> maxSize;
 }
 
+int isEmpty(StaticLinkedList *list) {
+    return list -> currentSize == 0;
+}
+
 int insertAtEnd(StaticLinkedList *list, StaticNode node) {
     StaticNode* newNode = (StaticNode *) malloc (sizeof(StaticNode));
 

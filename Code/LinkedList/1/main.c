@@ -39,7 +39,17 @@ void handleCase(DynamicLinkedList *list, int input) {
         }
 
         case 5: {
-            showAllStudents();
+            showAllStudentsInSelectedCourse();
+            break;
+        }
+
+        case 6: {
+            insertStudent(SELECTED_COURSE -> list);
+            break;
+        }
+
+        case 7: {
+            deleteStudent();
             break;
         }
 
@@ -68,6 +78,8 @@ void dashboard(DynamicLinkedList *dynamicList) {
         // + Student Related
 
         printf("5. Ver todos los estudiantes en la clase\n");
+        printf("6. Agregar un estudiante\n");
+        printf("7. Eliminar un estudiante\n");
 
         // * --------------------------------------------|>
         
@@ -79,19 +91,6 @@ void dashboard(DynamicLinkedList *dynamicList) {
         printf("\nTerminar ejecucion? (1/0): ");
         scanf("%d", &exit);
     } while (exit != 1); 
-}
-
-void insertStudent(StaticLinkedList *list) {
-    StaticNode student;
-
-    student.studentName = takeInput("Nombre del estudiante: ");
-    student.ID = takeInput("Ingrese el codigo del estudiante: ");
-    student.noIdentification = takeInput("Ingrese el numero de identificacion del estudiante: ");
-    student.email = takeInput("Ingrese el correo electronico del estudiante: ");
-
-    (insertAtEnd(list, student)) ? 
-        log("Estudiante agregado correctamente") :
-        log("Error al momento de guardar los datos");
 }
 
 void mainMenu(DynamicLinkedList *dynamicList) {
