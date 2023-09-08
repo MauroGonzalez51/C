@@ -15,5 +15,6 @@ int selectedCourseExists();
 int printSelectedCourse();
 void modifyCourse();
 void deleteCourse(DynamicLinkedList *list);
+void showAllStudents();
 
 #endif

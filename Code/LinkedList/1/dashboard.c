@@ -105,3 +105,23 @@ void deleteCourse(DynamicLinkedList *list) {
     list -> size--;
     log("Curso eliminado correctamente");
 }
+
+void showAllStudents() {
+    if (!printSelectedCourse()) { log("Error: Seleccione un curso primero"); return; }
+
+    int studentCount = 0;
+    StaticNode *current = SELECTED_COURSE -> list -> head;
+    while (current != NULL) {
+        studentCount++;
+        println(30);
+
+        printf("[%d]\n\n", studentCount);
+
+        printf("Nombre del estudiante: %s\n", current -> studentName);
+        printf("[ ID / CODIGO ]: %s\n", current -> ID);
+        printf("Numero de identificacion: %s\n", current -> noIdentification);
+        printf("Correo electronico: %s\n", current -> email);
+
+        current = current -> nextElement;
+    }
+}
