@@ -39,6 +39,7 @@ int insertAtEnd(StaticLinkedList *list, StaticNode node) {
     newNode -> ID = copyString(node.ID);
     newNode -> noIdentification = copyString(node.noIdentification);
     newNode -> email = copyString(node.email);
+    newNode -> finalGrade = rand() % 6;
     
     // * ------------------------------------------------------|>
 

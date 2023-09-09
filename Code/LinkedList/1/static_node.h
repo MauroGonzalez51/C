@@ -3,6 +3,7 @@
 
 typedef struct StaticNode {
     char *studentName, *ID, *noIdentification, *email;
+    float finalGrade;
     struct StaticNode *nextElement;
 } StaticNode;
 

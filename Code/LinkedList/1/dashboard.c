@@ -139,6 +139,7 @@ void showAllStudentsInSelectedCourse() {
         printf("[ ID / CODIGO ]: %s\n", current -> ID);
         printf("Numero de identificacion: %s\n", current -> noIdentification);
         printf("Correo electronico: %s\n", current -> email);
+        printf("Nota final: %f", current -> finalGrade);
 
         current = current -> nextElement;
     }
@@ -220,6 +221,7 @@ void modifyStudent() {
         SELECTED_COURSE -> list -> head -> ID = takeInput("Nuevo [ ID / CODIGO ] del estudiante: ");
         SELECTED_COURSE -> list -> head -> noIdentification = takeInput("Nuevo numero de identificacion: ");
         SELECTED_COURSE -> list -> head -> email = takeInput("Nuevo correo electronico: ");
+        SELECTED_COURSE -> list -> head -> finalGrade = rand() % 6;
         log("Datos modificados correctamente");
         return;
     }
@@ -247,6 +249,47 @@ void modifyStudent() {
     current -> ID = takeInput("Nuevo [ ID / CODIGO ] del estudiante: ");
     current -> noIdentification = takeInput("Nuevo numero de identificacion: ");
     current -> email = takeInput("Nuevo correo electronico: ");
+    current -> finalGrade = rand() % 6;
 
     log("Datos modificados correctamente");
+}
+
+void averagePerCourse(DynamicLinkedList *list) {
+    DynamicNode *node = list -> head;
+
+    int classCount = 0;
+
+    while (node != NULL) {
+        classCount++;
+
+        println(40);
+
+        printf("[%d]\n\n", classCount);
+
+        float counter = 0.0;
+
+        StaticNode *current = node -> list -> head;
+
+        while (current != NULL) {
+            counter += current -> finalGrade;
+            current = current -> nextElement;
+        }
+
+        printf("Promedio: %f\n", counter / node -> list -> currentSize);
+
+        node = node -> nextElement;
+    }
+}
+
+void averageInSelectedCourse() {
+    StaticNode *current = SELECTED_COURSE -> list -> head;
+
+    float counter = 0.0;
+
+    while (current != NULL) {
+        counter += current -> finalGrade;
+        current = current -> nextElement;
+    }
+
+    printf("Promedio: %f\n", counter / SELECTED_COURSE -> list -> currentSize);
 }

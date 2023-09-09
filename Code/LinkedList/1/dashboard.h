@@ -22,4 +22,7 @@ void insertStudent(StaticLinkedList *list);
 void deleteStudent();
 void modifyStudent();
 
+void averagePerCourse(DynamicLinkedList *list);
+void averageInSelectedCourse();
+
 #endif

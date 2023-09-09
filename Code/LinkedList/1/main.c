@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctime>
 
 #include "dynamic_linked_list.h"
 #include "static_linked_list.h"
@@ -58,6 +59,16 @@ void handleCase(DynamicLinkedList *list, int input) {
             break;
         }
 
+        case 9: {
+            averagePerCourse(list);
+            break;
+        }
+        
+        case 10: {
+            averageInSelectedCourse();
+            break;
+        }
+
         default:
             exit(EXIT_FAILURE);
     }
@@ -89,6 +100,11 @@ void dashboard(DynamicLinkedList *dynamicList) {
 
         // * --------------------------------------------|>
         
+        // + All courses
+
+        printf("9. Promedio por clase\n");
+        printf("10. Promedio en la clase seleccionada\n");
+
         printf("\nSeleccione un valor: ");
         scanf("%d", &input);
 
@@ -132,6 +148,8 @@ void mainMenu(DynamicLinkedList *dynamicList) {
 }
 
 int main(void) {
+    srand(time(NULL));
+
     DynamicLinkedList *dynamicList = createDynamicLinkedList();
 
     mainMenu(dynamicList);
