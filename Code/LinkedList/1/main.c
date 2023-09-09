@@ -111,6 +111,8 @@ void dashboard(DynamicLinkedList *dynamicList) {
         printf("10. Promedio por clase\n");
         printf("11. Mostrar todos los estudiantes\n");
 
+        // * --------------------------------------------|>
+
         printf("\nSeleccione un valor: ");
         scanf("%d", &input);
 
@@ -161,6 +163,8 @@ int main(void) {
     mainMenu(dynamicList);
 
     dashboard(dynamicList);
+
+    free(dynamicList);
 
     return EXIT_SUCCESS;
 }
