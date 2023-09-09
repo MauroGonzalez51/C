@@ -24,5 +24,6 @@ void modifyStudent();
 
 void averagePerCourse(DynamicLinkedList *list);
 void averageInSelectedCourse();
+void showAllStudents(DynamicLinkedList *list);
 
 #endif

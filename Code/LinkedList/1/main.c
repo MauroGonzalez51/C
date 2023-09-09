@@ -40,35 +40,40 @@ void handleCase(DynamicLinkedList *list, int input) {
         }
 
         case 5: {
-            showAllStudentsInSelectedCourse();
-            break;
-        }
-
-        case 6: {
-            insertStudent(SELECTED_COURSE -> list);
-            break;
-        }
-
-        case 7: {
-            deleteStudent();
-            break;
-        }
-
-        case 8: {
-            modifyStudent();
-            break;
-        }
-
-        case 9: {
-            averagePerCourse(list);
-            break;
-        }
-        
-        case 10: {
             averageInSelectedCourse();
             break;
         }
 
+        case 6: {
+            showAllStudentsInSelectedCourse();
+            break;
+        }
+
+        case 7: {
+            insertStudent(SELECTED_COURSE -> list);
+            break;
+        }
+
+        case 8: {
+            deleteStudent();
+            break;
+        }
+
+        case 9: {
+            modifyStudent();
+            break;
+        }
+
+        case 10: {
+            averagePerCourse(list);
+            break;
+        }
+
+        case 11: {
+            showAllStudents(list);
+            break;
+        }
+        
         default:
             exit(EXIT_FAILURE);
     }
@@ -88,22 +93,23 @@ void dashboard(DynamicLinkedList *dynamicList) {
         printf("2. Seleccionar una clase\n");
         printf("3. Modificar una clase\n");
         printf("4. Eliminar una clase\n");
+        printf("5. Promedio en la clase seleccionada\n");
 
         // * --------------------------------------------|>
 
         // + Student Related
 
-        printf("5. Ver todos los estudiantes en la clase\n");
-        printf("6. Agregar un estudiante\n");
-        printf("7. Eliminar un estudiante\n");
-        printf("8. Modificar un estudiante\n");
+        printf("6. Ver todos los estudiantes en la clase\n");
+        printf("7. Agregar un estudiante\n");
+        printf("8. Eliminar un estudiante\n");
+        printf("9. Modificar un estudiante\n");
 
         // * --------------------------------------------|>
         
         // + All courses
 
-        printf("9. Promedio por clase\n");
-        printf("10. Promedio en la clase seleccionada\n");
+        printf("10. Promedio por clase\n");
+        printf("11. Mostrar todos los estudiantes\n");
 
         printf("\nSeleccione un valor: ");
         scanf("%d", &input);

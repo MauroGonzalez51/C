@@ -293,3 +293,38 @@ void averageInSelectedCourse() {
 
     printf("Promedio: %f\n", counter / SELECTED_COURSE -> list -> currentSize);
 }
+
+void showAllStudents(DynamicLinkedList *list) {
+    DynamicNode *node = list -> head;
+
+    int classCount = 0;
+
+    while (node != NULL) {
+        classCount++;
+
+        println(40);
+
+        printf("Clase [%d]\n\n", classCount);
+
+        StaticNode *current = node -> list -> head;
+
+        int studentCount = 0;
+
+        while (current != NULL) {
+            studentCount++;
+            println(30);
+
+            printf("Estudiante [%d]\n\n", studentCount);
+
+            printf("Nombre del estudiante: %s\n", current -> studentName);
+            printf("[ ID / CODIGO ]: %s\n", current -> ID);
+            printf("Numero de identificacion: %s\n", current -> noIdentification);
+            printf("Correo electronico: %s\n", current -> email);
+            printf("Nota final: %f", current -> finalGrade);
+
+            current = current -> nextElement;
+        }
+
+        node = node -> nextElement;
+    }
+}
