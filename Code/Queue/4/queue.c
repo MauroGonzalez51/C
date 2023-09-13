@@ -6,9 +6,15 @@ void createQueue(Queue *queue) {
     queue->size = 0;
 }
 
-void enQueue(Queue *queue, int value) {
+void enQueue(Queue *queue, Node node) {
     Node *newElement = (Node *)malloc(sizeof(Node));
-    newElement->value = value;
+    
+    newElement -> userName = (char *) malloc (strlen(node.userName + 1) * sizeof(char));
+    strcpy(newElement -> userName, node.userName);
+
+    newElement -> pageSize = node.pageSize;
+    newElement -> printTime = rand() % 10 + 1;
+
     newElement->nextElement = NULL;
 
     if (isEmptyQueue(queue)) {
@@ -21,6 +27,7 @@ void enQueue(Queue *queue, int value) {
 
     queue->size++;
 }
+
 
 Node* deQueue(Queue *queue) {
     if (isEmptyQueue(queue)) {
@@ -41,7 +48,24 @@ int isEmptyQueue(Queue *queue) {
 void printQueue(Queue *queue) {
     Node *current = queue -> front;
     while (current != NULL) {
-        printf("%d | ", current -> value);
+        for (int i = 0; i < 40; i++) {
+            printf("-");
+        } 
+        printf("\n\n");
+
+        printf("Nombre de usuario: %s\n", current -> userName);       
+        printf("Numero de paginas: %d\n", current -> pageSize);
+        printf("Tiempo de impresion: %d Segundos\n", current -> printTime);
+        printf("\n");
+
+        fflush(stdout); 
+
+        // * It's supposed that the program should stop here for a while
+        // * but for some reason seems to not be working :/
+
+        Sleep(current -> printTime);
+
         current = current -> nextElement;
     }
+    printf("\n");
 }

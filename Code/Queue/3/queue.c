@@ -22,6 +22,7 @@ void enQueue(Queue *queue, int value) {
     queue->size++;
 }
 
+
 Node* deQueue(Queue *queue) {
     if (isEmptyQueue(queue)) {
         return NULL;
@@ -44,4 +45,5 @@ void printQueue(Queue *queue) {
         printf("%d | ", current -> value);
         current = current -> nextElement;
     }
+    printf("\n");
 }

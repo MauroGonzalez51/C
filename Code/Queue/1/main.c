@@ -1,29 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "queue.h"
 #include "stack.h"
+#include "queue.h"
 
-void invertOrder(Queue *queue, Stack *stack) {
+#define MAX_ELEMENTS 10
 
-}
+void reverseQueue(Queue *queue);
 
-int main(void) {
+int main() {
     Queue queue;
-    Stack auxiliarStack;
-
     createQueue(&queue);
-    createStack(&auxiliarStack);
 
-    printf("Elementos de la cola: ");
-    for (int i = 0; i < 10; i++) {
-        Node node;
-        node.value = i;
-        enQueue(&queue, node);
-        printf("Agregando valor: %d\n", node.value);
+    for (int i = 0; i < MAX_ELEMENTS; i++) {
+        enQueue(&queue, i + 1);
     }
 
-    invertOrder(&queue, &auxiliarStack);
+    printf("Original queue: ");
 
-    return EXIT_SUCCESS;
+    printQueue(&queue);
+
+    printf("\n");
+
+    reverseQueue(&queue);
+
+    printf("Reversed queue: ");
+    
+    printQueue(&queue);
+
+    printf("\n");
+
+    return 0;
+}
+
+void reverseQueue(Queue *queue) {
+    Stack stack;
+    createStack(&stack);
+
+    while (!isEmptyQueue(queue)) {
+        Node *element = deQueue(queue);
+        push(&stack, element->value);
+        free(element);
+    }
+
+    while (!isEmptyStack(&stack)) {
+        int value = pop(&stack);
+        enQueue(queue, value);
+    }
 }

@@ -6,7 +6,7 @@ void createQueue(Queue *queue) {
     queue->size = 0;
 }
 
-void enQueue(Queue *queue, int value) {
+void enQueue(Queue *queue, char value) {
     Node *newElement = (Node *)malloc(sizeof(Node));
     newElement->value = value;
     newElement->nextElement = NULL;
@@ -21,6 +21,7 @@ void enQueue(Queue *queue, int value) {
 
     queue->size++;
 }
+
 
 Node* deQueue(Queue *queue) {
     if (isEmptyQueue(queue)) {
@@ -41,7 +42,8 @@ int isEmptyQueue(Queue *queue) {
 void printQueue(Queue *queue) {
     Node *current = queue -> front;
     while (current != NULL) {
-        printf("%d | ", current -> value);
+        printf("%c | ", current -> value);
         current = current -> nextElement;
     }
+    printf("\n");
 }

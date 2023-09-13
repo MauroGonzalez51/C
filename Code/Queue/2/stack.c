@@ -5,7 +5,7 @@ void createStack(Stack *stack) {
     stack->size = 0;
 }
 
-void push(Stack *stack, int value) {
+void push(Stack *stack, char value) {
     Node *newElement = (Node *)malloc(sizeof(Node));
     newElement->value = value;
     newElement->nextElement = stack->top;
@@ -14,18 +14,16 @@ void push(Stack *stack, int value) {
     stack->size++;
 }
 
-int pop(Stack *stack) {
+Node* pop(Stack *stack) {
     if (isEmptyStack(stack)) {
-        return -1;
+        return NULL;
     }
 
-    Node *poppedElement = stack->top;
-    stack->top = poppedElement->nextElement;
-    stack->size--;
+    Node *poppedElement = stack -> top;
+    stack -> top = poppedElement -> nextElement;
+    stack -> size--;
 
-    int value = poppedElement->value;
-    free(poppedElement);
-    return value;
+    return poppedElement;
 }
 
 int isEmptyStack(Stack *stack) {

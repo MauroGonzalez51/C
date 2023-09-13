@@ -12,8 +12,8 @@ typedef struct {
 } Stack;
 
 void createStack(Stack *stack);
-void push(Stack *stack, int value);
-int pop(Stack *stack);
+void push(Stack *stack, char value);
+Node* pop(Stack *stack);
 int isEmptyStack(Stack *stack);
 
 #endif
