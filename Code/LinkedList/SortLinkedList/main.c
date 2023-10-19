@@ -289,7 +289,7 @@ int listsAreSublist(DynamicLinkedList *list, DynamicLinkedList *flag) {
 
     int listPreviousIndex, listNextIndex, listIndexExpected;
 
-    DynamicNode *current = flag->head;
+    DynamicNode *current = flag -> head;
     while (current -> nextElement != NULL) {
         listPreviousIndex = getIndexOfElement(list, *(searchElementInList(list, *current)));
 
@@ -297,7 +297,7 @@ int listsAreSublist(DynamicLinkedList *list, DynamicLinkedList *flag) {
 
         listIndexExpected = listPreviousIndex + 1;
 
-        listNextIndex = getIndexOfElement(list, *(searchElementInList(list, *(current->nextElement))));
+        listNextIndex = getIndexOfElement(list, *(searchElementInList(list, *(current -> nextElement))));
 
         if (!listNextIndex) { return 0; }
 
@@ -350,21 +350,31 @@ int main() {
     insertWhileKeeppingSorted(list, node);
     printList(list, 1);
 
-    // * Arroja segmentation fault :D
+    DynamicLinkedList *newList = createDynamicLinkedList();
+    int newElements[] = {1, 2, 3}; 
+    int newSize = sizeof(newElements) / sizeof(newElements[0]);
 
-    // DynamicLinkedList *newList = createDynamicLinkedList();
-    // int newElements[] = {1, 2, 3}; 
-    // int newSize = sizeof(newElements) / sizeof(newElements[0]);
+    for (int i = 0; i < newSize; i++) {
+        node.value = newElements[i];
+        if (!insertAtEnd(newList, node)) exit(EXIT_FAILURE);
+    }
 
-    // for (int i = 0; i < newSize; i++) {
-    //     node.value = newElements[i];
-    //     if (!insertAtEnd(list, node)) exit(EXIT_FAILURE);
-    // }
+    sortList(newList);
 
-    // sortList(newList);
+    printf("\nNew List: \n");
+    printList(newList, 1);
 
-    // if (listsAreSublist(list, newList)) { printf("true\n"); }
-    // else printf("false\n");
+    (listsAreEqual(list, newList)) ? 
+        printf("\nLists are equal!\n") : 
+        printf("\nList are not equal\n");
+
+    (listsAreSimilar(list, newList)) ?
+        printf("\nLists are similar!\n"):
+        printf("\nList are not similar\n");
+
+    (listsAreSublist(list, newList)) ?
+        printf("\nnewList is a sublist of the list!\n"):
+        printf("\nnewList is not a sublist of the list!\n");
     
     return EXIT_SUCCESS;
 }
