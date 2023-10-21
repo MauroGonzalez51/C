@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NO_NODES 10
+#define NO_NODES 6
 
 typedef struct Graph {
     struct Node* head[NO_NODES];
@@ -10,10 +10,12 @@ typedef struct Graph {
 typedef struct Node {
     int destination;
     struct Node* next;
+    float weight;
 } Node;
 
 typedef struct Edge {
     int source, destination;
+    float weight;
 } Edge;
 
 Graph* createGraph(Edge edges[], int n) {
@@ -28,6 +30,7 @@ Graph* createGraph(Edge edges[], int n) {
     for (int i = 0; i < n; i++) {
         int source = edges[i].source;
         int destination = edges[i].destination;
+        float weight = edges[i].weight;
 
         Node* newNode = (Node *) malloc(sizeof(Node));
 
@@ -36,6 +39,8 @@ Graph* createGraph(Edge edges[], int n) {
         newNode -> destination = destination;
 
         newNode -> next = graph -> head[source];
+
+        newNode -> weight = weight;
 
         graph -> head[source] = newNode;
     }
