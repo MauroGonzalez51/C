@@ -1,15 +1,28 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <float.h>
 #define NO_NODES 5
 #define INF 1410065407
 
+/**
+ * Dijkstra's algorithm to find the shortest path between two nodes in a graph.
+ *
+ * @param adjacency The adjacency matrix of the graph.
+ * @param weight The weight matrix of the graph.
+ * @param startNode The starting node.
+ * @param endNode The ending node.
+ */
+
 void dijikstra(int adjacency[NO_NODES][NO_NODES], float weight[NO_NODES][NO_NODES], int startNode, int endNode) {
+    if (startNode < 0 || startNode >= NO_NODES || endNode < 0 || endNode >= NO_NODES) {
+        printf("Invalid startNode or endNode\n");
+        return;
+    }
 
     for (int row = 0; row < NO_NODES; row++) {
         for (int column = 0; column < NO_NODES; column++) {
             if (!weight[row][column]) {
-                weight[row][column] = INF;
+                weight[row][column] = FLT_MAX;
             }
         }
     }
@@ -30,7 +43,7 @@ void dijikstra(int adjacency[NO_NODES][NO_NODES], float weight[NO_NODES][NO_NODE
     count = 1;
     
     while (count < NO_NODES - 1) {
-        int minDistance = INF;
+        float minDistance = FLT_MAX;
 
         for (i = 0; i < NO_NODES; i++) {
             if (distance[i] < minDistance && !visited[i]) {
@@ -48,7 +61,7 @@ void dijikstra(int adjacency[NO_NODES][NO_NODES], float weight[NO_NODES][NO_NODE
             j = endNode;
             do {
                 j = pred[j];
-                printf(" <- %d ", j);
+                printf(" <- %d", j);
             } while (j != startNode);
             printf("\n\n");
 
