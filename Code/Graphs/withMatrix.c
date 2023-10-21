@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #define NO_NODES 5
-#define INF 9999999999
+#define INF 1410065407
 
 void dijikstra(int adjacency[NO_NODES][NO_NODES], float weight[NO_NODES][NO_NODES], int startNode, int endNode) {
 
@@ -40,6 +40,21 @@ void dijikstra(int adjacency[NO_NODES][NO_NODES], float weight[NO_NODES][NO_NODE
         }
 
         visited[nextNode] = 1;
+        if (nextNode == endNode) {
+            printf("\n");
+            printf("La distancia del nodo %d al nodo %d es %f\n", startNode, endNode, distance[endNode]);
+            printf("Ruta= %d", endNode);
+
+            j = endNode;
+            do {
+                j = pred[j];
+                printf(" <- %d ", j);
+            } while (j != startNode);
+            printf("\n\n");
+
+            break;
+        }
+
         for (i = 0; i < NO_NODES; i++) {
             if (!visited[i]) {
                 if (minDistance + weight[nextNode][i] < distance[i]) {
@@ -47,24 +62,10 @@ void dijikstra(int adjacency[NO_NODES][NO_NODES], float weight[NO_NODES][NO_NODE
                     pred[i] = nextNode;
                 }
             }
-        } 
+        }
 
         count++;
     }
-
-    for(i = 0; i < NO_NODES; i++) {
-        if(i != startNode) {
-            printf("La distancia del nodo %d al nodo %d es %f\n", startNode, i, distance[i]);
-            printf("Ruta= %d", i);
-
-            j = i;
-            do {
-                j = pred[j];
-                printf(" <- %d ", j);           
-            } while(j != startNode);
-            printf("\n\n");
-        }
-    }        
 }
 
 int main(void) {
